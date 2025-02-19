@@ -1,0 +1,37 @@
+.navigation {
+  z-index: 10;
+  background-color: #232323;
+  padding: 0.9375rem 1.875rem;
+  font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: 0.3125rem solid #2A9D8F;
+  position: relative;
+}
+.navigation .side {
+  display: flex;
+  align-items: center;
+  gap: 1.875rem;
+}
+.navigation__router-button {
+  color: white;
+  text-decoration: none;
+  transition: transform 0.1s ease-in-out;
+}
+.navigation__router-button:hover {
+  transform: scale(95%);
+}
+.navigation__cursor {
+  height: 0;
+  width: 0;
+  border-left: 0.5208333333rem solid transparent;
+  border-right: 0.5208333333rem solid transparent;
+  border-bottom: 0.78125rem solid #2A9D8F;
+  position: absolute;
+  left: -12.5px;
+  top: 37.5px;
+  transition: all 0.25s ease-in-out;
+}
+
+/*# sourceMappingURL=navigation.css.map */

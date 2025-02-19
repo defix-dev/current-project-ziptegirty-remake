@@ -1,4 +1,4 @@
-package org.ziptegrity.currentprojectziptegrityremake;
+package org.ziptegrity;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

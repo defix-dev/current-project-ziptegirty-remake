@@ -1,0 +1,31 @@
+@import "../options/variables";
+@import "../templates/content";
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+
+  &__error {
+    padding: $main-offset/2;
+    word-wrap: break-word;
+    background-color: rgba(red, .1);
+    border: px2rem(1px) solid red;
+    color: red;
+  }
+
+  &__login {
+    color: red;
+  }
+
+  &__title {
+    font-size: px2rem(32px);
+    margin-bottom: $main-offset;
+  }
+
+  &__tip {
+    @include info;
+  }
+}

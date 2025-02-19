@@ -1,0 +1,98 @@
+@import "../functions/math";
+@import "../options/variables";
+
+.header {
+  z-index: 11;
+  background-color: $header-bg-color;
+  padding: px2rem(20px) px2rem(30px);
+  margin: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  font-size: px2rem(16px);
+
+  &__right {
+    display: flex;
+    gap: px2rem(30px);
+    align-items: center;
+  }
+
+  &__unauthorized {
+    display: flex;
+    gap: px2rem(30px);
+  }
+
+  &__login-button {
+    border: px2rem(1px) solid $main-color;
+    padding: px2rem(8px) px2rem(16px);
+    transition: all .25s ease-in-out;
+
+    &:hover {
+      //background-color: rgba($main-color, .1);
+      border-radius: px2rem(50px);
+    }
+
+    &:active {
+      transform: scale(95%);
+    }
+  }
+
+  &__register-button {
+    background-color: $main-color;
+    padding: px2rem(8px) px2rem(16px);
+    transition: all .25s ease-in-out;
+
+    &:hover {
+      border-radius: px2rem(50px);
+    }
+
+    &:active {
+      transform: scale(95%);
+    }
+  }
+
+  &__logout-button {
+    border: px2rem(1px) solid $main-color;
+    padding: px2rem(8px) px2rem(16px);
+    transition: all .25s ease-in-out;
+
+    &:hover {
+      //background-color: rgba($main-color, .1);
+      border-radius: px2rem(50px);
+    }
+
+    &:active {
+      transform: scale(95%);
+    }
+  }
+
+  a {
+    text-decoration: none;
+    color: white;
+  }
+
+  &__menu-button {
+    position: relative;
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: px2rem(16px);
+      background-color: white;
+      width: 100%;
+      height: px2rem(.5px);
+      margin-top: px2rem(7.5px);
+      opacity: 0;
+      transition: all .1s ease-in-out;
+    }
+    &:hover:before {
+      margin-top: px2rem(5px);
+      opacity: 100%;
+    }
+  }
+
+  &__logo {
+    height: px2rem(40px);
+  }
+}

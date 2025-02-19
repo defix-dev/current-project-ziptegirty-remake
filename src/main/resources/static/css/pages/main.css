@@ -1,0 +1,28 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+}
+.main__error {
+  padding: 0.625rem;
+  word-wrap: break-word;
+  background-color: rgba(255, 0, 0, 0.1);
+  border: 0.0625rem solid red;
+  color: red;
+}
+.main__login {
+  color: red;
+}
+.main__title {
+  font-size: 2rem;
+  margin-bottom: 1.25rem;
+}
+.main__tip {
+  font-size: 1rem;
+  border: 0.0625rem solid rgba(0, 0, 0, 0.5);
+  padding: 0.625rem;
+}
+
+/*# sourceMappingURL=main.css.map */

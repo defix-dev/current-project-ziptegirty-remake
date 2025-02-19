@@ -1,0 +1,55 @@
+@import "../functions/math";
+@import "../options/variables";
+
+@mixin headerButton() {
+  width: px2rem(35px);
+  height: px2rem(35px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: $main-offset/3;
+  background-color: rgba($main-color, .1);
+  border: px2rem(1px) solid $main-color;
+
+  img {
+    vertical-align: middle;
+    width: px2rem(17.5px);
+  }
+}
+
+@mixin header() {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: $main-offset;
+  border-bottom: px2rem(1px) solid $main-border-color;
+  width: 100%;
+  height: px2rem(75px);
+  max-height: px2rem(75px);
+  min-height: px2rem(75px);
+}
+
+@mixin miniHeader() {
+  color: rgba(black, .5);
+  padding-bottom: $main-offset/2;
+  width: 100%;
+  border-bottom: px2rem(1px) solid rgba(black, .25);
+}
+
+@mixin container() {
+  padding: $main-offset;
+  display: flex;
+  flex-direction: column;
+  gap: $main-offset;
+}
+
+@mixin info() {
+  font-size: px2rem(16px);
+  border: px2rem(1px) solid rgba(black, .5);
+  padding: $main-offset/2;
+}
+
+@mixin headerTitle() {
+  font-weight: 500;
+  font-size: px2rem(20px);
+}

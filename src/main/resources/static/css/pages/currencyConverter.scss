@@ -1,0 +1,101 @@
+@import "../functions/math";
+@import "../options/variables";
+@import "../templates/content";
+
+.currency-converter {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  width: 100%;
+  height: 100%;
+
+  .side {
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__header {
+    @include header;
+  }
+
+  &__title {
+    @include headerTitle;
+  }
+
+  &__right {
+    border-left: px2rem(1px) solid $main-border-color;
+  }
+
+  &__content {
+    @include container;
+  }
+
+  &__value {
+    all: unset;
+    font-size: px2rem(64px);
+    font-weight: 550;
+
+    &::-webkit-inner-spin-button,
+    &::-webkit-outer-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+  }
+
+  &__currency-type {
+    all: unset;
+    padding: $main-offset/2;
+    background-color: $default-button-color;
+    border: px2rem(1px) solid $default-button-border-color;
+    color: black;
+    padding: px2rem(8px) px2rem(16px);
+    transition: border-radius .25s ease-in-out,
+    transform .25s ease-in-out;
+
+    &--selected {
+      background-color: $main-color;
+      border-color: $main-color-dark;
+      color: white;
+      &:hover {
+        transform: scale(100%) !important;
+        border-radius: 0 !important;
+      }
+    }
+
+    &:hover {
+      cursor: pointer;
+      border-radius: px2rem(50px);
+      transform: scale(95%);
+    }
+  }
+
+  &__currency-container {
+    display: flex;
+    gap: $main-offset/2;
+  }
+
+  &__button-container {
+    display: flex;
+    gap: $main-offset/2;
+  }
+
+  &__button {
+    padding: px2rem(8px) px2rem(16px);
+    background-color: $default-button-color;
+    border: px2rem(1px) solid $default-button-border-color;
+    color: black;
+    text-decoration: none;
+    transition: opacity .1s ease-in-out;
+
+    &:hover {
+      opacity: 65%;
+    }
+  }
+
+  &__mini-header {
+    @include miniHeader;
+  }
+
+  &__header-button {
+    @include headerButton;
+  }
+}

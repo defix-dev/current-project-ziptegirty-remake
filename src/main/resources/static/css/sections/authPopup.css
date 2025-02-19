@@ -1,0 +1,82 @@
+.auth-popup {
+  padding: 1.25rem;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 31.25rem;
+}
+.auth-popup__title {
+  font-size: 1.5rem;
+  margin-right: 6.25rem;
+}
+.auth-popup__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: -0.625rem;
+}
+.auth-popup__layout {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.auth-popup__inner-layout {
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+}
+.auth-popup__input {
+  all: unset;
+  padding: 0.625rem;
+  border: 0.0625rem solid rgba(0, 0, 0, 0.5);
+}
+.auth-popup__button {
+  all: unset;
+  background-color: #2A9D8F;
+  width: 100%;
+  padding: 0.625rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  transition: all 0.25s ease-in-out;
+}
+.auth-popup__button:hover {
+  cursor: pointer;
+  border-radius: 3.125rem;
+}
+.auth-popup__button:active {
+  transform: scale(95%);
+}
+.auth-popup__close {
+  text-decoration: none;
+  transform: rotate(45deg);
+  transition: transform 0.5s ease-in-out;
+}
+.auth-popup__close:before {
+  content: "+";
+  color: black;
+  font-size: 2.5rem;
+  font-weight: 300;
+}
+.auth-popup__close:hover {
+  transform: rotate(315deg);
+}
+.auth-popup__error {
+  padding: 0.625rem;
+  word-wrap: break-word;
+  background-color: rgba(255, 0, 0, 0.1);
+  border: 0.0625rem solid red;
+  color: red;
+}
+.auth-popup__info {
+  padding: 0.625rem;
+  word-wrap: break-word;
+  background-color: rgba(42, 157, 143, 0.1);
+  border: 0.0625rem solid #2A9D8F;
+  color: #2A9D8F;
+}
+
+/*# sourceMappingURL=authPopup.css.map */

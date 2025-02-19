@@ -1,0 +1,43 @@
+@import "../options/variables";
+@import "../functions/math";
+
+.navigation {
+  z-index: 10;
+  background-color: $navigation-bg-color;
+  padding: px2rem(15px) px2rem(30px);
+  font-size: px2rem(16px);
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  border-bottom: px2rem(5px) solid $main-color;
+  position: relative;
+
+  .side {
+    display: flex;
+    align-items: center;
+    gap: px2rem(30px);
+  }
+
+  &__router-button {
+    color: white;
+    text-decoration: none;
+    transition: transform .1s ease-in-out;
+
+    &:hover {
+      transform: scale(95%);
+    }
+  }
+
+  &__cursor {
+    $cursor-size: 12.5px;
+    height: 0;
+    width: 0;
+    border-left: px2rem($cursor-size/1.5) solid transparent;
+    border-right: px2rem($cursor-size/1.5) solid transparent;
+    border-bottom: px2rem($cursor-size) solid $main-color;
+    position: absolute;
+    left: -$cursor-size;
+    top: $cursor-size*3;
+    transition: all 0.25s ease-in-out;
+  }
+}

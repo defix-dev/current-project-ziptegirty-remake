@@ -1,0 +1,94 @@
+@import "../functions/math";
+@import "../options/variables";
+
+.auth-popup {
+  padding: $main-offset;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: $main-offset;
+  max-width: px2rem(500px);
+
+  &__title {
+    font-size: px2rem(24px);
+    margin-right: px2rem(100px);
+  }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: px2rem(-10px);
+  }
+
+  &__layout {
+    display: flex;
+    flex-direction: column;
+    gap: $main-offset;
+  }
+
+  &__inner-layout {
+    display: flex;
+    flex-direction: column;
+    gap: $main-offset/2;
+  }
+
+  &__input {
+    all: unset;
+    padding: $main-offset/2;
+    border: px2rem(1px) solid rgba(black, .5);
+  }
+
+  &__button {
+    all: unset;
+    background-color: $main-color;
+    width: 100%;
+    padding: $main-offset/2 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: white;
+    transition: all .25s ease-in-out;
+
+    &:hover {
+      cursor: pointer;
+      border-radius: px2rem(50px);
+    }
+
+    &:active {
+      transform: scale(95%);
+    }
+  }
+
+  &__close {
+    text-decoration: none;
+    transform: rotate(45deg);
+    transition: transform .5s ease-in-out;
+    &:before {
+      content: "+";
+      color: black;
+      font-size: px2rem(40px);
+      font-weight: 300;
+    }
+    &:hover {
+      transform: rotate(315deg);
+    }
+  }
+
+  &__error {
+    padding: $main-offset/2;
+    word-wrap: break-word;
+    background-color: rgba(red, .1);
+    border: px2rem(1px) solid red;
+    color: red;
+  }
+
+  &__info {
+    padding: $main-offset/2;
+    word-wrap: break-word;
+    background-color: rgba($main-color, .1);
+    border: px2rem(1px) solid $main-color;
+    color: $main-color;
+  }
+}

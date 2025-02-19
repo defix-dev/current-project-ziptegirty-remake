@@ -1,4 +1,4 @@
-package org.ziptegrity.currentprojectziptegrityremake;
+package org.ziptegrity.app;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
