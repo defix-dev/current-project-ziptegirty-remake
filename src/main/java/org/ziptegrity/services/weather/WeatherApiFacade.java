@@ -30,7 +30,7 @@ public class WeatherApiFacade {
         try {
             return apiClient.getCurrentWeatherData(locCache.getLocation(countryName));
         } catch (Exception e) {
-            logger.error("Failed to get current weather data: "+countryName);
+            logger.error(STR."Failed to get current weather data: \{countryName}");
             throw new FailedToExecuteWeatherApiRequestException(e.getMessage());
         }
     }
@@ -39,7 +39,7 @@ public class WeatherApiFacade {
         try {
             return apiClient.getDailyWeatherData(locCache.getLocation(countryName));
         } catch (Exception e) {
-            logger.error("Failed to get daily weather data: "+countryName);
+            logger.error(STR."Failed to get daily weather data: \{countryName}");
             throw new FailedToExecuteWeatherApiRequestException(e.getMessage());
         }
     }
@@ -48,7 +48,7 @@ public class WeatherApiFacade {
         try {
             return apiClient.getForecastWeatherData(locCache.getLocation(countryName), dayLimit);
         } catch (Exception e) {
-            logger.error("Failed to get forecast weather data: "+countryName);
+            logger.error(STR."Failed to get forecast weather data: \{countryName}");
             throw new FailedToExecuteWeatherApiRequestException(e.getMessage());
         }
     }

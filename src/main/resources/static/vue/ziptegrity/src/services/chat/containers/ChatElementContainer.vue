@@ -1,5 +1,5 @@
 <script setup>
-import ChatElement from "@/services/chat/ChatElement.vue";
+import ChatElement from "@/services/chat/elements/ChatElement.vue";
 
 defineProps({
   chats: Array,

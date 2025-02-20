@@ -1,5 +1,5 @@
 <script setup>
-import MessageElement from "@/services/chat/MessageElement.vue";
+import MessageElement from "@/services/chat/elements/MessageElement.vue";
 
 defineProps({
   messages: Array

@@ -1,0 +1,25 @@
+@import "../templates/popup";
+
+.country-popup {
+  @include mainBlock;
+
+  &__layout {
+    @include layout;
+  }
+
+  &__input {
+    @include input;
+  }
+
+  &__button {
+    @include button;
+  }
+
+  &__header {
+    @include header;
+  }
+
+  &__title {
+    @include headerTitle;
+  }
+}

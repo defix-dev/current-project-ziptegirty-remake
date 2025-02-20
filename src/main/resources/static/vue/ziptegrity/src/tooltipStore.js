@@ -7,12 +7,9 @@ export const tooltipStore = reactive({
     targetElement: null,
 
     show(component, targetElement, props=null) {
-        if(this.isVisible) this.hide();
-
         tooltipStore.component = component;
         tooltipStore.props = props;
         tooltipStore.targetElement = targetElement;
-
         this.isVisible = true;
     },
 

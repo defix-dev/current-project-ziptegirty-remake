@@ -1,7 +1,7 @@
 <script setup>
 import {onMounted, ref, watch} from "vue";
-import ChatElementContainer from "@/services/chat/ChatElementContainer.vue";
-import MessageElementContainer from "@/services/chat/MessageElementContainer.vue";
+import ChatElementContainer from "@/services/chat/containers/ChatElementContainer.vue";
+import MessageElementContainer from "@/services/chat/containers/MessageElementContainer.vue";
 import {Stomp} from "@stomp/stompjs";
 import SockJS from 'sockjs-client';
 import {useRoute, useRouter} from "vue-router";

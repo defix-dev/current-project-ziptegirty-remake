@@ -34,31 +34,29 @@ public class DefaultWeatherApiClient implements WeatherApiClient {
 
     @Override
     public CurrentWeatherApiDTO getCurrentWeatherData(Location location) throws IOException, InterruptedException {
+        logger.debug(STR."Location adapted: \{location.getLatitude()}:\{location.getLongitude()}");
         HttpRequest req = HttpRequest.newBuilder().GET()
-                .uri(URI.create(String.format(
-                        "https://api.open-meteo.com/v1/forecast?current_weather=true&latitude=%f&longitude=%f&hourly=temperature,windspeed,relative_humidity_2m,pressure_msl",
-                        location.getLatitude(),
-                        location.getLongitude()
-                ))).build();
-        JsonNode root = mapper.readTree(sendWeatherRequest(req).body());
+                .uri(URI.create(STR."https://api.open-meteo.com/v1/forecast?current_weather=true&latitude=\{location.getLatitude()}&longitude=\{location.getLongitude()}&hourly=temperature,windspeed,relative_humidity_2m,pressure_msl")).build();
+        String body = sendWeatherRequest(req).body();
+        logger.debug(STR."Current weather source data: \{body}");
+        JsonNode root = mapper.readTree(body);
         JsonNode current = root.path("current_weather");
         JsonNode hourly = root.path("hourly");
         String curTime = current.get("time").asText();
 
         int index = -1;
         Iterator<JsonNode> elements = hourly.get("time").elements();
-        int i = 0;
 
+        LocalDateTime barrier = LocalDateTime.parse(curTime);
         while (elements.hasNext()) {
             JsonNode timeElement = elements.next();
-            if (timeElement.asText().equals(curTime)) {
-                index = i;
-                break;
-            }
-            i++;
+            LocalDateTime t = LocalDateTime.parse(timeElement.asText());
+            logger.debug(STR."Parsed time: \{t}");
+            if (t.isAfter(barrier)) { break; }
+            index++;
         }
 
-        logger.debug("Current time: "+curTime+", Index:"+index);
+        logger.debug(STR."Current time: \{curTime}, Index:\{index}");
 
         return new CurrentWeatherApiDTO(
                 current.get("temperature").asDouble(),
@@ -72,18 +70,14 @@ public class DefaultWeatherApiClient implements WeatherApiClient {
     public List<HourlyWeatherApiDTO> getDailyWeatherData(Location location) throws IOException, InterruptedException {
         String curDate = LocalDate.now().toString();
         HttpRequest req = HttpRequest.newBuilder().GET()
-                .uri(URI.create(String.format(
-                        "https://api.open-meteo.com/v1/forecast?latitude=%f&longitude=%f&hourly=temperature_2m,weathercode&timezone=auto&start_date=%s&end_date=%s",
-                        location.getLatitude(),
-                        location.getLongitude(),
-                        curDate,
-                        curDate
-                ))).build();
+                .uri(URI.create(
+                        STR."https://api.open-meteo.com/v1/forecast?latitude=\{location.getLatitude()}&longitude=\{location.getLongitude()}&hourly=temperature_2m,weathercode&timezone=auto&start_date=\{curDate}&end_date=\{curDate}"
+                )).build();
         JsonNode hourly = mapper.readTree(sendWeatherRequest(req).body()).path("hourly");
         List<HourlyWeatherApiDTO> dailyData = new ArrayList<>();
         IntStream.range(0, hourly.get("time").size()).forEach(i -> {
             LocalTime time = LocalDateTime.parse(hourly.get("time").get(i).asText()).toLocalTime();
-            logger.debug("Parsed time: "+time);
+            logger.debug(STR."Parsed time: \{time}");
             dailyData.add(new HourlyWeatherApiDTO(
                     time,
                     hourly.get("temperature_2m").get(i).asDouble(),
@@ -96,18 +90,17 @@ public class DefaultWeatherApiClient implements WeatherApiClient {
 
     @Override
     public List<DailyForecastApiDTO> getForecastWeatherData(Location location, int dayLimit) throws IOException, InterruptedException {
+        String startDate = LocalDate.now().plusDays(1).toString();
+        String endDate = LocalDate.now().plusDays(dayLimit).toString();
         HttpRequest req = HttpRequest.newBuilder().GET()
-                .uri(URI.create(String.format(
-                        "https://api.open-meteo.com/v1/forecast?latitude=%f&longitude=%f&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=auto&forecast_days=%d",
-                        location.getLatitude(),
-                        location.getLongitude(),
-                        dayLimit
-                ))).build();
+                .uri(URI.create(
+                        STR."https://api.open-meteo.com/v1/forecast?latitude=\{location.getLatitude()}&longitude=\{location.getLongitude()}&daily=temperature_2m_max,temperature_2m_min,weathercode&timezone=auto&start_date=\{startDate}&end_date=\{endDate}"
+                )).build();
         JsonNode daily = mapper.readTree(sendWeatherRequest(req).body()).path("daily");
         List<DailyForecastApiDTO> forecastData = new ArrayList<>();
         IntStream.range(0, daily.get("time").size()).forEach(i -> {
-            LocalDate date = LocalDateTime.parse(daily.get("time").get(i).asText()).toLocalDate();
-            logger.debug("Parsed date: "+date);
+            LocalDate date = LocalDate.parse(daily.get("time").get(i).asText());
+            logger.debug(STR."Parsed date: \{date}");
             forecastData.add(new DailyForecastApiDTO(
                     date,
                     daily.get("weathercode").get(i).asInt(),

@@ -1,0 +1,49 @@
+.country-popup {
+  padding: 1.25rem;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 31.25rem;
+}
+.country-popup__layout {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.country-popup__input {
+  all: unset;
+  padding: 0.625rem;
+  border: 0.0625rem solid rgba(0, 0, 0, 0.5);
+}
+.country-popup__button {
+  all: unset;
+  background-color: #2A9D8F;
+  width: 100%;
+  padding: 0.625rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  transition: all 0.25s ease-in-out;
+}
+.country-popup__button:hover {
+  cursor: pointer;
+  border-radius: 3.125rem;
+}
+.country-popup__button:active {
+  transform: scale(95%);
+}
+.country-popup__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: -0.625rem;
+}
+.country-popup__title {
+  font-size: 1.5rem;
+  margin-right: 6.25rem;
+}
+
+/*# sourceMappingURL=entryCountryNamePopup.css.map */

@@ -1,0 +1,65 @@
+.error-popup {
+  padding: 1.25rem;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 31.25rem;
+}
+.error-popup__layout {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.error-popup__button {
+  all: unset;
+  background-color: #2A9D8F;
+  width: 100%;
+  padding: 0.625rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  transition: all 0.25s ease-in-out;
+}
+.error-popup__button:hover {
+  cursor: pointer;
+  border-radius: 3.125rem;
+}
+.error-popup__button:active {
+  transform: scale(95%);
+}
+.error-popup__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: -0.625rem;
+}
+.error-popup__title {
+  font-size: 1.5rem;
+  margin-right: 6.25rem;
+}
+.error-popup__close {
+  text-decoration: none;
+  transform: rotate(45deg);
+  transition: transform 0.5s ease-in-out;
+}
+.error-popup__close:before {
+  content: "+";
+  color: black;
+  font-size: 2.5rem;
+  font-weight: 300;
+}
+.error-popup__close:hover {
+  transform: rotate(315deg);
+}
+.error-popup__error {
+  padding: 0.625rem;
+  word-wrap: break-word;
+  background-color: rgba(255, 0, 0, 0.1);
+  border: 0.0625rem solid red;
+  color: red;
+}
+
+/*# sourceMappingURL=errorPopup.css.map */

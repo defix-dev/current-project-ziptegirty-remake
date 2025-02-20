@@ -1,0 +1,125 @@
+@import "../options/variables";
+@import "../functions/math";
+@import "../templates/content";
+
+.weather-service {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: 50% 50%;
+
+  &__header {
+    @include header;
+  }
+
+  &__content {
+    @include container;
+    overflow-y: auto;
+    flex-grow: 1;
+  }
+
+  .side {
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__mini-header {
+    @include miniHeader;
+  }
+
+  &__title {
+    @include headerTitle;
+  }
+
+  &__right {
+    border-left: px2rem(1px) solid $main-border-color;
+    overflow: auto;
+  }
+
+  &__weather-feature-container {
+    display: flex;
+    align-items: center;
+    gap: $main-offset/2;
+    flex-wrap: wrap;
+  }
+
+  .weather-feature {
+    display: inline-flex;
+    padding: $main-offset/2;
+    background-color: $default-button-color;
+    border: px2rem(1px) solid $default-button-border-color;
+    gap: $main-offset/4;
+    align-items: center;
+
+    img {
+      width: px2rem(25px);
+      height: px2rem(25px);
+    }
+  }
+
+  &__details-forecast {
+    width: 100%;
+    border-spacing: 0;
+    border-collapse: collapse;
+    table-layout: fixed;
+
+    tr {
+
+    }
+
+    th {
+      padding: $main-offset/2;
+      border: px2rem(1px) solid $default-button-border-color;
+      background-color: $default-button-color;
+      font-weight: normal;
+      border-bottom-width: 0;
+    }
+
+    td {
+      padding: $main-offset/2;
+      border: px2rem(1px) solid $default-button-border-color;
+      text-align: center;
+    }
+  }
+
+  .forecast {
+    width: 100%;
+    background-color: $default-button-color;
+    border: px2rem(1px) solid $default-button-border-color;
+    padding: $main-offset/2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &__right {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: $main-offset/2;
+      place-items: flex-start;
+      width: 40%;
+    }
+
+    .forecast-feature {
+      display: flex;
+      align-items: center;
+      gap: $main-offset/4;
+      width: 100%;
+
+      img {
+        width: px2rem(25px);
+        height: px2rem(25px);
+      }
+    }
+  }
+
+  &__forecast-container {
+    display: flex;
+    flex-direction: column;
+    gap: $main-offset/2;
+  }
+
+  &__header-button {
+    @include headerButton;
+  }
+}

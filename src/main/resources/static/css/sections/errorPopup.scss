@@ -1,0 +1,31 @@
+@import "../templates/popup";
+
+@import "../templates/popup";
+
+.error-popup {
+  @include mainBlock;
+
+  &__layout {
+    @include layout;
+  }
+
+  &__button {
+    @include button;
+  }
+
+  &__header {
+    @include header;
+  }
+
+  &__title {
+    @include headerTitle;
+  }
+
+  &__close {
+    @include hideButton;
+  }
+
+  &__error {
+    @include error;
+  }
+}
