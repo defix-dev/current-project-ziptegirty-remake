@@ -21,7 +21,7 @@ const router = createRouter({
 let first = true;
 
 router.beforeEach(to => {
-    fetch("/api/user/is_authorized").then(res => res.text().then(result => {
+    fetch("/api/v1/authentication/authorized").then(res => res.text().then(result => {
         if (result === "false" || to.name === undefined) {
             router.push('/main');
         }

@@ -27,8 +27,24 @@ const stompClient = ref(null);
 
 const searchedChats = ref([]);
 
+function encodeToBase64(value) {
+  const encodedCharsBuffer = new TextEncoder().encode(value);
+  let toEncode = '';
+  encodedCharsBuffer.forEach(byte => toEncode += String.fromCharCode(byte));
+  return btoa(toEncode);
+}
+
+function decodeFromBase64(value) {
+  const decodedCharsBuffer = atob(value);
+  const toDecode = new Uint8Array(decodedCharsBuffer.length);
+  for(let i = 0; i < toDecode.length; i++) {
+    toDecode[i] = decodedCharsBuffer.charCodeAt(i);
+  }
+  return new TextDecoder().decode(toDecode);
+}
+
 async function loadUserInfo() {
-  await fetch("/api/user/get_user_info")
+  await fetch("/api/v1/user")
       .then(res => res.json().then(json => userInfo.value = {
         username: json.username,
         id: json.id
@@ -36,12 +52,12 @@ async function loadUserInfo() {
 }
 
 function loadChats() {
-  fetch("/api/chat/get_chats").then(res => res.json()).then(
+  fetch("/api/v1/chats").then(res => res.json()).then(
       json => {
         if (json.status !== undefined) return;
         chats.value = json.map(chat => ({
           username: chat.targetUsername,
-          message: chat.lastMessage,
+          message: decodeFromBase64(chat.lastMessage),
           date: chat.localDateTime,
           targetId: chat.targetId
         }));
@@ -51,11 +67,11 @@ function loadChats() {
 
 async function loadMessages(userId) {
   await loadUserInfo();
-  fetch(`/api/chat/get_messages?targetUserId=${userId}`).then(res => res.json())
+  fetch(`/api/v1/messages?targetUserId=${userId}`).then(res => res.json())
       .then(json => {
         if (json.status !== undefined) { messages.value = []; return; }
         messages.value = json.map(message => ({
-          message: message.message,
+          message: decodeFromBase64(message.message),
           date: message.createdAt,
           isUser: (message.senderId === userInfo.value.id)
         }));
@@ -64,7 +80,7 @@ async function loadMessages(userId) {
 
 async function openChat(userId) {
   await loadMessages(userId);
-  fetch(`/api/chat/get_chat_info?targetUserId=${userId}`).then(res => res.json())
+  fetch(`/api/v1/chats/metadata?targetUserId=${userId}`).then(res => res.json())
       .then(json => {
         chatInfo.value = {
           targetUsername: json.targetUsername,
@@ -98,7 +114,7 @@ async function initStomp() {
     stompClient.value.subscribe(`/chat/listen/${userInfo.value.id}`, (messageObj) => {
       const body = JSON.parse(messageObj.body);
       applyMessage({
-        message: body.message,
+        message: decodeFromBase64(body.message),
         date: body.createdAt,
         fromId: body.senderId
       });
@@ -110,7 +126,7 @@ function sendMessage(userId) {
   if (stompClient.value === null || userMessage.value === "") return;
   stompClient.value.send(
       `/services/chat/${userId}`
-      , {}, userMessage.value
+      , {}, encodeToBase64(userMessage.value)
   );
 }
 

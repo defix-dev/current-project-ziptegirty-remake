@@ -1,0 +1,30 @@
+.day-limit-tooltip__button {
+  all: unset;
+  text-align: center;
+  padding: 0.625rem;
+  color: white;
+  background-color: #2A9D8F;
+  position: relative;
+  transition: transform 0.15s ease-in-out;
+}
+.day-limit-tooltip__button:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 0.0625rem;
+  background-color: white;
+  transition: width 0.15s ease-in-out;
+}
+.day-limit-tooltip__button:hover {
+  cursor: pointer;
+}
+.day-limit-tooltip__button:hover:before {
+  width: 100%;
+}
+.day-limit-tooltip__button:focus {
+  transform: scale(95%);
+}
+
+/*# sourceMappingURL=dayLimitTooltip.css.map */

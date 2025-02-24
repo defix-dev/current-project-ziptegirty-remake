@@ -30,14 +30,14 @@ public class UserService implements UserDetailsService {
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         Optional<User> user = Optional.ofNullable(userRepo.findByUsername(username));
         if(user.isEmpty()) throw new UsernameNotFoundException("Username not found.");
-        logger.debug("User has been loaded: "+username);
+        logger.debug(STR."User has been loaded: \{username}");
         return user.get();
     }
 
     public User findById(int id) {
         Optional<User> user = userRepo.findById(id);
         if(user.isEmpty()) throw new UserNotFoundException();
-        logger.debug("User has been finded: "+user.get().getUsername());
+        logger.debug(STR."User has been finded: \{user.get().getUsername()}");
         return user.get();
     }
 
@@ -45,7 +45,7 @@ public class UserService implements UserDetailsService {
         Optional<User> user = Optional
                 .ofNullable(userRepo.findByUsername(username));
         if(user.isEmpty()) throw new UserNotFoundException();
-        logger.debug("User has been finded: "+user.get().getUsername());
+        logger.debug(STR."User has been finded: \{user.get().getUsername()}");
         return user.get();
     }
 
@@ -54,7 +54,7 @@ public class UserService implements UserDetailsService {
             throw new UserAlreadyExistException();
         }
         userRepo.save(user);
-        logger.debug("User created with id="+user.getId());
+        logger.debug(STR."User created with id=\{user.getId()}");
     }
 
     public boolean isUserExist(int id) {

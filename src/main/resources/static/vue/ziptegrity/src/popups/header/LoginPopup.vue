@@ -7,7 +7,7 @@ const loginData = ref({
 });
 const error = ref(false);
 const submit = () => {
-  fetch("/auth/login", {
+  fetch("/api/v1/authentication/login", {
     method: "POST",
     body: JSON.stringify(loginData.value),
     headers: { "Content-Type": "application/json" }

@@ -2,14 +2,5 @@
 @import "../options/variables";
 
 .tooltip {
-  &__title {
-    color: $main-color;
-  }
 
-  &__search-input {
-    all: unset;
-    border: px2rem(1px) solid $default-button-border-color;
-    padding: $main-offset/2;
-    color: $default-button-border-color;
-  }
 }

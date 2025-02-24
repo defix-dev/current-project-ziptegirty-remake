@@ -11,7 +11,7 @@ import org.ziptegrity.services.user.objects.UserDTO;
 import java.security.Principal;
 
 @RestController
-@RequestMapping("/api/user")
+@RequestMapping("/api/v1/user")
 public class UserController {
     private final UserService userService;
 
@@ -20,12 +20,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @GetMapping("/is_authorized")
-    public ResponseEntity<Boolean> authorized(Principal principal) {
-        return ResponseEntity.ok(principal != null);
-    }
-
-    @GetMapping("/get_user_info")
+    @GetMapping
     public ResponseEntity<UserDTO> getUserInfo(Principal principal) {
         return ResponseEntity.ok(new UserDTO(
                         principal.getName(),

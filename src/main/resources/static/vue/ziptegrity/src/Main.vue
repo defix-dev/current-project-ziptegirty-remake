@@ -4,7 +4,7 @@ import {popupStore} from "@/popupStore.js";
 import LoginPopup from "@/popups/header/LoginPopup.vue";
 import {ref} from "vue";
 const authorized = ref(false);
-fetch("/api/user/is_authorized").then(
+fetch("/api/v1/authentication/authorized").then(
     res => res.text().then(result => authorized.value = result === "true")
 );
 </script>

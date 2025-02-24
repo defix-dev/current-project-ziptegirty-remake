@@ -89,10 +89,10 @@
 }
 .weather-service .forecast__right {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: 2fr 1fr 1fr;
   gap: 0.625rem;
   place-items: flex-start;
-  width: 40%;
+  width: 55%;
 }
 .weather-service .forecast .forecast-feature {
   display: flex;

@@ -7,6 +7,26 @@ import {popupStore} from "@/popupStore.js";
 import EnterCountryNamePopup from "@/popups/header/EnterCountryNamePopup.vue";
 import ErrorPopup from "@/popups/header/ErrorPopup.vue";
 import {useRoute, useRouter} from "vue-router";
+import {tooltipStore} from "@/tooltipStore.js";
+import EnterDayLimitTooltip from "@/simplePopups/chat/EnterDayLimitTooltip.vue";
+
+const weatherIds = Object.fromEntries(
+    [
+      [[0], "Ясно"],
+      [[1, 2, 3], "Облачно"],
+      [[45, 48], "Туман"],
+      [[51, 53, 55], "Морось"],
+      [[56, 57], "Сильная морось"],
+      [[61, 63, 65], "Слабый дождь"],
+      [[66, 67], "Дождь"],
+      [[71, 73, 75], "Слабый снегопад"],
+      [[77], "Снегопад"],
+      [[80, 81, 82], "Ливень"],
+      [[85, 86], "Снежный ливень"],
+      [[95], "Гроза"],
+      [[96, 99], "Сильная гроза"],
+    ].flatMap(([ids, description]) => ids.map(id => [id, description]))
+);
 
 const route = useRoute();
 const router = useRouter();
@@ -15,7 +35,7 @@ const dayLimit = ref(10);
 
 function openErrorPopup() {
   popupStore.show(ErrorPopup, {
-    message: "Введите корректное название города",
+    message: "Во время запроса к станции произошла ошибка, проверьте корректность вводимых данных и повторите попытку.",
     onSubmit: () => {
       router.push(`/services/weather`).then(() => window.location.reload());
     }
@@ -23,7 +43,7 @@ function openErrorPopup() {
 }
 
 function loadCurrentWeather() {
-  fetch(`/api/weather/get_current_weather?countryName=${countryName.value}`)
+  fetch(`/api/v1/weather/current?countryName=${countryName.value}`)
       .then(res => res.json())
       .then(json => {
         if(json.status != null) {
@@ -33,26 +53,26 @@ function loadCurrentWeather() {
         features.value = [];
         features.value.push({
           iconPath: "/images/temperature_icon.png",
-          value: json.temperature
+          value: json.temperature + "°C"
         });
         features.value.push({
           iconPath: "/images/wind_speed_icon.png",
-          value: json.windSpeed
+          value: json.windSpeed + " км/ч"
         });
         features.value.push({
           iconPath: "/images/humidity_icon.png",
-          value: json.humidityIntensive
+          value: json.humidityIntensive + "%"
         });
         features.value.push({
           iconPath: "/images/pressure_icon.png",
-          value: json.pressure
+          value: json.pressure + " рт.ст."
         });
       })
       .catch(_ => openErrorPopup());
 }
 
 function loadDailyWeather() {
-  fetch(`/api/weather/get_daily_weather?countryName=${countryName.value}`)
+  fetch(`/api/v1/weather/daily?countryName=${countryName.value}`)
       .then(res => res.json())
       .then(json => {
         if(json.status != null) {
@@ -62,14 +82,14 @@ function loadDailyWeather() {
         detailForecasts.value = json.map(item => ({
           time: item.time,
           temperature: item.temperature,
-          state: item.state
+          state: weatherIds[item.state]
         }));
       })
       .catch(() => openErrorPopup());
 }
 
 function loadForecastWeather() {
-  fetch(`/api/weather/get_forecast_weather?countryName=${countryName.value}&dayLimit=${dayLimit.value}`)
+  fetch(`/api/v1/weather/forecast?countryName=${countryName.value}&dayLimit=${dayLimit.value}`)
       .then(res => res.json())
       .then(json => {
         if(json.status != null) {
@@ -86,15 +106,15 @@ function loadForecastWeather() {
               forecastFeatures: [
                 {
                   iconPath: "/images/state_icon.png",
-                  value: item.state
+                  value: weatherIds[item.state]
                 },
                 {
                   iconPath: "/images/day_temperature_icon.png",
-                  value: item.dayTemperature
+                  value: item.dayTemperature + "°C"
                 },
                 {
                   iconPath: "/images/night_temperature_icon.png",
-                  value: item.nightTemperature
+                  value: item.nightTemperature + "°C"
                 }
               ]
             }];
@@ -106,15 +126,15 @@ function loadForecastWeather() {
           forecastFeatures: [
             {
               iconPath: "/images/state_icon.png",
-              value: item.state
+              value: weatherIds[item.state]
             },
             {
               iconPath: "/images/day_temperature_icon.png",
-              value: item.dayTemperature
+              value: item.dayTemperature + "°C"
             },
             {
               iconPath: "/images/night_temperature_icon.png",
-              value: item.nightTemperature
+              value: item.nightTemperature + "°C"
             }
           ]
         }));
@@ -133,7 +153,7 @@ const features = ref([
 const detailForecasts = ref([
   {
     time: "NONE",
-    state: 0,
+    state: "",
     temperature: 0
   }
 ]);
@@ -161,6 +181,11 @@ const forecast = ref([{
 }]);
 //  __ STRUCTURE EXAMPLE __
 
+function onChangeDayLimit(limit) {
+  dayLimit.value = limit;
+  loadForecastWeather();
+}
+
 const pathToEditIcon = "/images/edit_name_icon.png";
 const pathToDateIcon = "/images/change_data_icon.png";
 
@@ -177,6 +202,7 @@ onMounted(() => {
 
 <template>
   <link rel="stylesheet" href="/css/pages/weather.css"/>
+  <link rel="stylesheet" href="/css/sections/dayLimitTooltip.css"/>
   <div class="weather-service">
     <div class="weather-service__left side">
       <div class="weather-service__header">
@@ -195,7 +221,9 @@ onMounted(() => {
     <div class="weather-service__right side">
       <div class="weather-service__header">
         <span class="weather-service__title">Прогноз на {{ dayLimit }} дней вперед</span>
-        <a href="#" class="weather-service__header-button" @click="popupStore.show(ErrorPopup, {message:'Test error message'})">
+        <a class="weather-service__header-button" @click="(event) => tooltipStore.show(EnterDayLimitTooltip, event.target, {
+          onChangeLimit: onChangeDayLimit
+        })">
           <img :src="pathToDateIcon" alt="DATE"/>
         </a>
       </div>

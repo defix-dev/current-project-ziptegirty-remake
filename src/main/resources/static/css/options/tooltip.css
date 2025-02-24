@@ -36,12 +36,21 @@
   flex-direction: column;
   gap: 0.625rem;
 }
-.tooltip__search-button {
+.tooltip__title {
+  color: #2A9D8F;
+}
+.tooltip__input {
+  all: unset;
+  border: 0.0625rem solid #7b7b7b;
+  padding: 0.625rem;
+  color: #7b7b7b;
+}
+.tooltip__button {
   aspect-ratio: 1/1;
   background-color: #7b7b7b;
   padding: 0.625rem;
 }
-.tooltip__search-button img {
+.tooltip__button img {
   height: 1.25rem;
   width: 1.25rem;
 }

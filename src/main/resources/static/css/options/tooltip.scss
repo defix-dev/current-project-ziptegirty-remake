@@ -43,7 +43,18 @@
     gap: $main-offset/2;
   }
 
-  &__search-button {
+  &__title {
+    color: $main-color;
+  }
+
+  &__input {
+    all: unset;
+    border: px2rem(1px) solid $default-button-border-color;
+    padding: $main-offset/2;
+    color: $default-button-border-color;
+  }
+
+  &__button {
     aspect-ratio: 1/1;
     background-color: $default-button-border-color;
     padding: $main-offset/2;

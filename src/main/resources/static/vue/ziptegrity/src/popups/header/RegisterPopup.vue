@@ -8,7 +8,7 @@ const registerData = ref({
 const error = ref(false);
 const first = ref(true);
 const submit = () => {
-  fetch("/auth/register", {
+  fetch("/api/v1/authentication/register", {
     method: "POST",
     body: JSON.stringify(registerData.value),
     headers: { "Content-Type": "application/json" }

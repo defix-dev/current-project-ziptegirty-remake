@@ -6,11 +6,11 @@ import {ref} from "vue";
 
 const pathToLogo = "/images/logo.png";
 const authorized = ref(false);
-fetch("/api/user/is_authorized").then(res => {
+fetch("/api/v1/authentication/authorized").then(res => {
   res.text().then(text => authorized.value = text === "true")
 });
 function logout() {
-  fetch("/auth/logout", {
+  fetch("/api/v1/authentication/logout", {
     method: "POST"
   }).then(_ => window.location.reload());
 }

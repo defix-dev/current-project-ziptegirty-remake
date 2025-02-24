@@ -2,13 +2,14 @@ package org.ziptegrity.services.weather;
 
 import com.github.benmanes.caffeine.cache.Cache;
 import com.github.benmanes.caffeine.cache.Caffeine;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 import org.ziptegrity.services.weather.objects.Location;
 
 import java.io.IOException;
 import java.util.concurrent.TimeUnit;
 
-@Service
+@Component
 public class LocationCache {
     private final Cache<String, Location> locationCache = Caffeine.newBuilder()
             .expireAfterWrite(2, TimeUnit.HOURS)

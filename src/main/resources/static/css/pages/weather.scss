@@ -94,10 +94,10 @@
 
     &__right {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: 2fr 1fr 1fr;
       gap: $main-offset/2;
       place-items: flex-start;
-      width: 40%;
+      width: 55%;
     }
 
     .forecast-feature {

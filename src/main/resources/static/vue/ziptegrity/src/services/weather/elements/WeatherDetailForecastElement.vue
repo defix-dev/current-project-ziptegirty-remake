@@ -1,14 +1,14 @@
 <script setup>
 defineProps({
   time: String,
-  state: Number,
+  state: String,
   temperature: Number
 });
 </script>
 
 <template>
   <tr>
-    <td>{{time}}</td>
+    <td>{{time.substring(0, time.lastIndexOf(":"))}}</td>
     <td>{{state}}</td>
     <td>{{temperature}}°C</td>
   </tr>

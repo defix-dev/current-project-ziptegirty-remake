@@ -9,7 +9,8 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class MessageDetails {
-    private int senderId;
-    private String message;
+public class ChatKeysCreationDetails {
+    private int userId;
+    private String privateKey;
+    private String publicKey;
 }

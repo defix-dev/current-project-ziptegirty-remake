@@ -53,7 +53,7 @@ async function updateCurrencyData() {
     fromType: fromType.value,
     toType: toType.value
   };
-  await fetch(`/api/currency_converter/get?fromValue=${currencyData.fromValue}&fromType=${currencyData.fromType}&toType=${currencyData.toType}`)
+  await fetch(`/api/v1/currency_converter?fromValue=${currencyData.fromValue}&fromType=${currencyData.fromType}&toType=${currencyData.toType}`)
       .then(res =>
     res.text().then(value => {
       toValue.value = Number.parseFloat(value);
