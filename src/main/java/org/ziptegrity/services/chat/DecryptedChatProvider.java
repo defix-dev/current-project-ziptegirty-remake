@@ -33,7 +33,7 @@ public class DecryptedChatProvider implements Provider<List<ChatApiDTO>, Integer
             Message lastMsg = messageService.getLastMessageByChatId(chat.getId());
             return new ChatApiDTO(
                     target.getUsername(), target.getId(),
-                    Base64.getEncoder().encodeToString(ChatCryptUtils.decrypt(lastMsg.getMessage()).getBytes()),
+                    ChatCryptUtils.decrypt(lastMsg.getMessage()),
                     lastMsg.getCreatedAt()
             );
         }).collect(Collectors.toList());

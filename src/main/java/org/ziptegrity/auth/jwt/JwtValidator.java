@@ -20,7 +20,7 @@ public class JwtValidator {
                     .getExpiration()
                     .after(new Date());
         } catch (Exception e) {
-            logger.error("Failed to validate token: "+e.getMessage());
+            logger.error(STR."Failed to validate token: \{e.getMessage()}");
             return false; }
     }
 }

@@ -20,7 +20,7 @@ public class EncryptedMessageCreator implements ReturnedCreator<Message, Message
     public Message create(MessageCreationDetails details) {
         return messageService.createMessageBetweenUsers(
                 details.getSenderId(), details.getDestinationId(), ChatCryptUtils.encrypt(
-                        new String(Base64.getDecoder().decode(details.getMessage())))
+                        details.getMessage())
         );
     }
 }

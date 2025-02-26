@@ -1,0 +1,56 @@
+.code-word-popup {
+  padding: 1.25rem;
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  max-width: 31.25rem;
+}
+.code-word-popup__layout {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.code-word-popup__input {
+  all: unset;
+  padding: 0.625rem;
+  border: 0.0625rem solid rgba(0, 0, 0, 0.5);
+}
+.code-word-popup__button {
+  all: unset;
+  background-color: #2A9D8F;
+  width: 100%;
+  padding: 0.625rem 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: white;
+  transition: all 0.25s ease-in-out;
+}
+.code-word-popup__button:hover {
+  cursor: pointer;
+  border-radius: 3.125rem;
+}
+.code-word-popup__button:active {
+  transform: scale(95%);
+}
+.code-word-popup__header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: -0.625rem;
+}
+.code-word-popup__info {
+  padding: 0.625rem;
+  word-wrap: break-word;
+  background-color: rgba(42, 157, 143, 0.1);
+  border: 0.0625rem solid #2A9D8F;
+  color: #2A9D8F;
+}
+.code-word-popup__title {
+  font-size: 1.5rem;
+  margin-right: 6.25rem;
+}
+
+/*# sourceMappingURL=codeWordPopup.css.map */

@@ -19,8 +19,8 @@ public class EncryptedChatKeysCreator implements Creator<ChatKeysCreationDetails
     public void create(ChatKeysCreationDetails details) {
         encryptionService.createKeys(
                 details.getUserId(),
-                ChatCryptUtils.encrypt(new String(Base64.getDecoder().decode(details.getPrivateKey()))),
-                ChatCryptUtils.encrypt(new String(Base64.getDecoder().decode(details.getPublicKey())))
+                ChatCryptUtils.encrypt(details.getPrivateKey()),
+                ChatCryptUtils.encrypt(details.getPublicKey())
         );
     }
 }

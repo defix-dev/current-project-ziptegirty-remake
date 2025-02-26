@@ -70,6 +70,14 @@
   color: red;
 }
 
+@mixin info() {
+  padding: $main-offset/2;
+  word-wrap: break-word;
+  background-color: rgba($main-color, .1);
+  border: px2rem(1px) solid $main-color;
+  color: $main-color;
+}
+
 @mixin mainBlock() {
   padding: $main-offset;
   background-color: white;

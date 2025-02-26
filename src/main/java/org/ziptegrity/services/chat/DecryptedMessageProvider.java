@@ -25,7 +25,7 @@ public class DecryptedMessageProvider implements BiProvider<List<MessageApiDTO>,
     public List<MessageApiDTO> provide(Integer aId, Integer bId) {
         List<Message> messages = messageService.getSortedMessagesByChatId(chatService.getChatBetweenUsers(aId, bId).getId());
         return messages.stream().map(msg -> new MessageApiDTO(
-                Base64.getEncoder().encodeToString(ChatCryptUtils.decrypt(msg.getMessage()).getBytes()),
+                ChatCryptUtils.decrypt(msg.getMessage()),
                 msg.getCreatedAt(),
                 msg.getUser().getId())).collect(Collectors.toList());
     }

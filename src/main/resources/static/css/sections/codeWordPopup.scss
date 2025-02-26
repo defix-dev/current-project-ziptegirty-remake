@@ -1,0 +1,29 @@
+@import "../templates/popup";
+
+.code-word-popup {
+  @include mainBlock;
+
+  &__layout {
+    @include layout;
+  }
+
+  &__input {
+    @include input;
+  }
+
+  &__button {
+    @include button;
+  }
+
+  &__header {
+    @include header;
+  }
+
+  &__info {
+    @include info;
+  }
+
+  &__title {
+    @include headerTitle;
+  }
+}

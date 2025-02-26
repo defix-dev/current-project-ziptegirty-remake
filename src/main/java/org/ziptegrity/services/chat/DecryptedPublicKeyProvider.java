@@ -16,7 +16,6 @@ public class DecryptedPublicKeyProvider implements Provider<String, Integer> {
 
     @Override
     public String provide(Integer userId) {
-        return Base64.getEncoder().encodeToString(
-                ChatCryptUtils.decrypt(encryptionService.getPublicKey(userId)).getBytes());
+        return ChatCryptUtils.decrypt(encryptionService.getPublicKey(userId));
     }
 }

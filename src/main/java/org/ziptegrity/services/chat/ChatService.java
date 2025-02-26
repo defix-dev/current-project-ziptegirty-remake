@@ -43,20 +43,20 @@ public class ChatService {
                 a, b
         ));
         Chat saved = chatRepo.save(chat);
-        logger.debug("Chat saved with id: "+chat.getId());
+        logger.debug(STR."Chat saved with id: \{chat.getId()}");
         return saved;
     }
 
     public boolean hasChat(int aId, int bId) {
         boolean has = chatRepo.hasChat(aId, bId);
-        logger.debug("Chat between "+aId + " " + bId + ": "+has);
+        logger.debug(STR."Chat between \{aId} \{bId}: \{has}");
         return has;
     }
 
     public Chat getChatBetweenUsers(int aId, int bId) {
         Optional<Chat> found = Optional.ofNullable(chatRepo.getChat(aId, bId));
         if(found.isEmpty()) throw new ChatNotFoundException();
-        logger.debug("Chat loaded with id: "+found.get().getId());
+        logger.debug(STR."Chat loaded with id: \{found.get().getId()}");
         return found.get();
     }
 
@@ -69,7 +69,7 @@ public class ChatService {
     public List<Chat> getSortedChatsByUserId(int userId) {
         List<Chat> chats = chatRepo.getSortedChatsByUserId(userId);
         if(chats.isEmpty()) throw new EmptyChatException();
-        logger.debug("Received chats: "+chats);
+        logger.debug(STR."Received chats: \{chats}");
         return chats;
     }
 }
