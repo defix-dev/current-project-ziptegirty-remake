@@ -1,6 +1,6 @@
 export class UserManager {
     static async getUserMetadata() {
-        const res = await fetch("/api/v1/user");
+        const res = await fetch("/api/v1/users/metadata");
         if(res.status !== 200) return null;
         const metadata = await res.json();
         return {

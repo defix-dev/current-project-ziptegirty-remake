@@ -5,9 +5,9 @@ import {useRoute} from "vue-router";
 const route = useRoute();
 let cursorRecord = null;
 
-function moveCursor(target, wait=false) {
+const moveCursor = (target, wait=false) => {
   const cursor = document.querySelector(".navigation__cursor");
-  function move() {
+  const move = () => {
     const parentRect = document.querySelector(".navigation").getBoundingClientRect();
     const targetRect = target.getBoundingClientRect();
     const offsetY = 24;
@@ -22,7 +22,7 @@ function moveCursor(target, wait=false) {
   cursor.addEventListener('transitionend', () => move());
 }
 
-function moveCursorOnClick(e) {
+const moveCursorOnClick = (e) => {
   moveCursor(e.target);
 }
 

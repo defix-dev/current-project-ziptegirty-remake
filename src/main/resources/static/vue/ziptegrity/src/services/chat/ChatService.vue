@@ -5,11 +5,11 @@ import MessageElementContainer from "@/services/chat/containers/MessageElementCo
 import {useRoute, useRouter} from "vue-router";
 import {tooltipStore} from "@/tooltipStore.js";
 import {searchStore} from "@/searchStore.js";
-import SearchTooltip from "@/simplePopups/chat/SearchTooltip.vue";
+import SearchTooltip from "@/tooltips/chat/SearchTooltip.vue";
 import {decodeFromBase64, decodeTextFromBase64} from "@/cryptUtils.js";
 import {popupStore} from "@/popupStore.js";
-import CodeWordCreationPopup from "@/popups/header/CodeWordCreationPopup.vue";
-import CodeWordValidationPopup from "@/popups/header/CodeWordValidationPopup.vue";
+import CodeWordCreationPopup from "@/popups/chat/CodeWordCreationPopup.vue";
+import CodeWordValidationPopup from "@/popups/chat/CodeWordValidationPopup.vue";
 import "./chatManager.js";
 import "./messageManager.js";
 import "./stompManager.js";
@@ -20,7 +20,7 @@ import {UserManager} from "@/services/chat/userManager.js";
 import {ChatManager} from "@/services/chat/chatManager.js";
 import {CryptoManager} from "@/services/chat/cryptoManager.js";
 import {StompManager} from "@/services/chat/stompManager.js";
-import ErrorPopup from "@/popups/header/ErrorPopup.vue";
+import ErrorPopup from "@/popups/common/ErrorPopup.vue";
 
 const pathToSearchIcon = "/images/search_chat_icon.png";
 const pathToAddIcon = "/images/add_chat_icon.png";

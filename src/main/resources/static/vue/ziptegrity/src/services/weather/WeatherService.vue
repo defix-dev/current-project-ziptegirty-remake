@@ -4,11 +4,11 @@ import WeatherFeatureContainer from "@/services/weather/containers/WeatherFeatur
 import WeatherDetailsForecastContainer from "@/services/weather/containers/WeatherDetailsForecastContainer.vue";
 import WeatherForecastContainer from "@/services/weather/containers/WeatherForecastContainer.vue";
 import {popupStore} from "@/popupStore.js";
-import EnterCountryNamePopup from "@/popups/header/EnterCountryNamePopup.vue";
-import ErrorPopup from "@/popups/header/ErrorPopup.vue";
+import EnterCountryNamePopup from "@/popups/weather/EnterCountryNamePopup.vue";
+import ErrorPopup from "@/popups/common/ErrorPopup.vue";
 import {useRoute, useRouter} from "vue-router";
 import {tooltipStore} from "@/tooltipStore.js";
-import EnterDayLimitTooltip from "@/simplePopups/chat/EnterDayLimitTooltip.vue";
+import EnterDayLimitTooltip from "@/tooltips/weather/EnterDayLimitTooltip.vue";
 
 const weatherIds = Object.fromEntries(
     [
@@ -33,7 +33,7 @@ const router = useRouter();
 const countryName = ref(route.params.name);
 const dayLimit = ref(10);
 
-function openErrorPopup() {
+const openErrorPopup = () => {
   popupStore.show(ErrorPopup, {
     message: "Во время запроса к станции произошла ошибка, проверьте корректность вводимых данных и повторите попытку.",
     onSubmit: () => {
@@ -42,7 +42,7 @@ function openErrorPopup() {
   })
 }
 
-function loadCurrentWeather() {
+const loadCurrentWeather = () => {
   fetch(`/api/v1/weather/current?countryName=${countryName.value}`)
       .then(res => res.json())
       .then(json => {
@@ -71,7 +71,7 @@ function loadCurrentWeather() {
       .catch(_ => openErrorPopup());
 }
 
-function loadDailyWeather() {
+const loadDailyWeather = () => {
   fetch(`/api/v1/weather/daily?countryName=${countryName.value}`)
       .then(res => res.json())
       .then(json => {
@@ -88,7 +88,7 @@ function loadDailyWeather() {
       .catch(() => openErrorPopup());
 }
 
-function loadForecastWeather() {
+const loadForecastWeather = () => {
   fetch(`/api/v1/weather/forecast?countryName=${countryName.value}&dayLimit=${dayLimit.value}`)
       .then(res => res.json())
       .then(json => {
@@ -181,7 +181,7 @@ const forecast = ref([{
 }]);
 //  __ STRUCTURE EXAMPLE __
 
-function onChangeDayLimit(limit) {
+const onChangeDayLimit = (limit) => {
   dayLimit.value = limit;
   loadForecastWeather();
 }

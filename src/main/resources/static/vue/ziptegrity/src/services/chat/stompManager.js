@@ -5,7 +5,7 @@ import {CryptoManager} from "@/services/chat/cryptoManager.js";
 
 export class StompManager {
     initialize(endpoint="http://localhost:3030/ws") {
-        this.client = Stomp.over(new SockJS('http://localhost:3030/ws'));
+        this.client = Stomp.over(new SockJS(endpoint));
     }
 
     subscribeChatListen(currentUserId, messageAdapter) {

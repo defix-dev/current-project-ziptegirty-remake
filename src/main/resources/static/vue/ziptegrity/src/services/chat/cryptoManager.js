@@ -1,7 +1,6 @@
 import {
-    decodeFromBase64,
-    decryptValueByCodeWord, decryptValueBySharedSecret,
-    encodeTextToBase64,
+    decryptValueByCodeWord,
+    decryptValueBySharedSecret,
     encryptValueBySharedSecret,
     getDerivedSharedSecret
 } from "@/cryptUtils.js";
@@ -33,18 +32,10 @@ export class CryptoManager {
     }
 
     static async encryptTextBySharedSecret(text, secret) {
-        console.log("Шифр сооб");
-        console.log(text);
-        const d =  await encryptValueBySharedSecret(text, secret);
-        console.log(d);
-        return d;
+        return await encryptValueBySharedSecret(text, secret);
     }
 
     static async decryptTextBySharedSecret(text, secret) {
-        console.log("расшифр сооб");
-        console.log(text);
-        const d = await decryptValueBySharedSecret(text, secret);
-        console.log(d);
-        return d;
+        return await decryptValueBySharedSecret(text, secret);
     }
 }

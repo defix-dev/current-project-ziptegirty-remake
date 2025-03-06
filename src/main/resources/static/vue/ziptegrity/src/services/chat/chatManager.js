@@ -6,8 +6,6 @@ export class ChatManager {
         const res = await fetch("/api/v1/chats");
         if (res.status !== 200) return null;
         return Promise.all((await res.json()).map(async chat => {
-            console.log("РАСШИФРОВКА ЧАТ-СООБЩЕНИЙ");
-            console.log(chat.lastMessage);
             const secret = await onReadChat?.(chat.targetId);
             return ({
                 username: chat.targetUsername,
