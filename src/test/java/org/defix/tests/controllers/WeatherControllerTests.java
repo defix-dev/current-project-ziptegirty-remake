@@ -1,6 +1,6 @@
 package org.defix.tests.controllers;
 
-import org.defix.TestUtils;
+import org.defix.tests.TestUtils;
 import org.defix.services.weather.WeatherApiFacade;
 import org.defix.services.weather.objects.CurrentWeatherApiDTO;
 import org.defix.services.weather.objects.DailyForecastApiDTO;
@@ -15,9 +15,7 @@ import org.springframework.test.context.bean.override.mockito.MockitoBean;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import static org.mockito.Mockito.when;
@@ -28,6 +26,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@ControllerTests
 public class WeatherControllerTests {
     @Autowired
     private MockMvc mockMvc;

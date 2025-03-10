@@ -13,6 +13,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@ControllerTests
 public class CurrencyConverterControllerTests {
     @Autowired
     private MockMvc mockMvc;

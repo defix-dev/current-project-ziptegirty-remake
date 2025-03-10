@@ -1,6 +1,6 @@
 package org.defix.tests.controllers;
 
-import org.defix.TestUtils;
+import org.defix.tests.TestUtils;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +17,6 @@ import org.defix.services.chat.objects.MessageApiDTO;
 import org.defix.services.user.UserService;
 
 import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
@@ -29,6 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @SpringBootTest
 @AutoConfigureMockMvc
+@ControllerTests
 public class MessageControllerTests {
     @Autowired
     private MockMvc mockMvc;

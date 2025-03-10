@@ -1,4 +1,4 @@
-package org.defix;
+package org.defix.tests;
 
 import org.assertj.core.util.Lists;
 

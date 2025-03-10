@@ -1,4 +1,4 @@
-package org.defix.app;
+package org.defix.tests.app;
 
 import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
