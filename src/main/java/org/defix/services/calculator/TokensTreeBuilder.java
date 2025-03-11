@@ -1,16 +1,14 @@
 package org.defix.services.calculator;
 
 import org.defix.services.calculator.abstractions.MappedToken;
-import org.defix.services.calculator.abstractions.TokenType;
 import org.defix.services.calculator.objects.DefaultMappedToken;
 import org.defix.services.calculator.objects.ExpressionToken;
 import org.defix.services.calculator.objects.MappedExpressionToken;
 import org.defix.services.calculator.objects.MappedFunctionToken;
 
 import java.util.LinkedList;
-import java.util.List;
 
-public class TokenTreeBuilder {
+public class TokensTreeBuilder {
     public static LinkedList<MappedToken> build(LinkedList<ExpressionToken> tokens) {
         LinkedList<MappedToken> result = new LinkedList<>();
         for (ExpressionToken token : tokens) {

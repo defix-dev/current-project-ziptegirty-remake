@@ -1,5 +1,8 @@
 package org.defix.services.calculator;
 
+import org.defix.services.calculator.exceptions.BadExpressionFormatException;
+import org.defix.services.calculator.exceptions.EmptyExpressionException;
+import org.defix.services.calculator.exceptions.FunctionNotFoundException;
 import org.defix.services.calculator.objects.ExpressionToken;
 import org.defix.services.calculator.abstractions.TokenType;
 import org.slf4j.Logger;
@@ -12,6 +15,8 @@ public class CalculatorTokenizer {
     private static final Logger logger = LoggerFactory.getLogger(CalculatorTokenizer.class);
 
     public static LinkedList<ExpressionToken> tokenizeExpression(String expression) {
+        if(expression == null || expression.isEmpty()) throw new EmptyExpressionException();
+        if(expression.startsWith("-")) expression = STR."0\{expression}";
         LinkedList<ExpressionToken> tokens = new LinkedList<>();
         expression = expression.replace(" ", "");
         Queue<Character> expQueue = createQueueByExpression(expression);
@@ -31,7 +36,7 @@ public class CalculatorTokenizer {
 
             Character current = expQueue.poll();
             if (current == null) {
-                tokens.add(new ExpressionToken(expectedTokenType, getTokenValue(expectedTokenType, tokenBuilder.toString())));
+                tokens.add(constructToken(expectedTokenType, tokenBuilder.toString()));
                 break;
             }
             TokenType innerExpectedType = getExpectedTokenType(current, expectedTokenType);
@@ -40,13 +45,14 @@ public class CalculatorTokenizer {
                     && expectedTokenType != TokenType.NONE;
             final boolean isOperatorExist = expectedTokenType == TokenType.OPERATOR && CalculatorTokensStore.operators.containsKey(tokenBuilder.toString());
             if ((expectedTokenType != innerExpectedType && isException) || isOperatorExist) {
-                tokens.add(new ExpressionToken(expectedTokenType, getTokenValue(expectedTokenType, tokenBuilder.toString())));
+                tokens.add(constructToken(expectedTokenType, tokenBuilder.toString()));
                 tokenBuilder = new StringBuilder();
             }
 
             expectedTokenType = innerExpectedType;
             tokenBuilder.append(current);
         }
+        if(tokens.size() % 2 == 0) throw new BadExpressionFormatException();
         return tokens;
     }
 
@@ -78,6 +84,10 @@ public class CalculatorTokenizer {
                 .collect(Collectors.toCollection(LinkedList::new));
     }
 
+    private static ExpressionToken constructToken(TokenType type, String value) {
+        if(type == TokenType.FUNCTION && !CalculatorTokensStore.functions.containsKey(value.substring(0, value.indexOf('(')))) throw new FunctionNotFoundException();
+        return new ExpressionToken(type, getTokenValue(type, value));
+    }
 
     private static Queue<Character> createQueueByExpression(String expression) {
         return new ArrayDeque<>(expression.chars().mapToObj(c -> (char) c).toList());
