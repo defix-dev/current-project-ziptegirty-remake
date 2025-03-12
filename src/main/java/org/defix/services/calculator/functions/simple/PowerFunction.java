@@ -1,4 +1,4 @@
-package org.defix.services.calculator.functions;
+package org.defix.services.calculator.functions.simple;
 
 import org.defix.services.calculator.abstractions.Function;
 

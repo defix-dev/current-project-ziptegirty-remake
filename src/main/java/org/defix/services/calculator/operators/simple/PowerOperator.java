@@ -1,4 +1,4 @@
-package org.defix.services.calculator.operators;
+package org.defix.services.calculator.operators.simple;
 
 import org.defix.services.calculator.abstractions.Operator;
 

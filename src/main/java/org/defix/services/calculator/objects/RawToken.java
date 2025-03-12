@@ -8,7 +8,7 @@ import org.defix.services.calculator.abstractions.TokenType;
 @Getter
 @Setter
 @AllArgsConstructor
-public class ExpressionToken {
+public class RawToken {
     private TokenType type;
     private String value;
 }
