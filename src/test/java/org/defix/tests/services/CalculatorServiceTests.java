@@ -1,7 +1,6 @@
 package org.defix.tests.services;
 
 import org.defix.services.calculator.*;
-import org.defix.services.calculator.abstractions.Calculator;
 import org.defix.services.calculator.abstractions.MappedToken;
 import org.defix.services.calculator.abstractions.TokensStore;
 import org.defix.services.calculator.objects.DefaultMappedToken;
@@ -9,6 +8,8 @@ import org.defix.services.calculator.objects.RawToken;
 import org.defix.services.calculator.abstractions.TokenType;
 import org.defix.services.calculator.objects.MappedExpressionToken;
 import org.defix.services.calculator.objects.MappedFunctionToken;
+import org.defix.services.calculator.tokenStores.ProgrammerTokensStore;
+import org.defix.services.calculator.tokenStores.SimpleTokensStore;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
@@ -38,7 +39,7 @@ public class CalculatorServiceTests {
     @ParameterizedTest
     @MethodSource("provideExpressionObjs")
     public void expressionTokenizerTest(ExpressionTestObj testObj) {
-        LinkedList<RawToken> tokens = new ExpressionTokenizer(simpleTokensStore).tokenizeExpression(testObj.expression);
+        List<RawToken> tokens = new ExpressionTokenizer(simpleTokensStore).tokenizeExpression(testObj.expression);
 
         assertFalse(tokens.isEmpty());
         assertEquals(testObj.tokens.size(), tokens.size());
@@ -54,7 +55,7 @@ public class CalculatorServiceTests {
     @ParameterizedTest
     @MethodSource("provideTokenizedParamObjs")
     public void functionTokenizerTest(FunctionTestObj testObj) {
-        LinkedList<LinkedList<RawToken>> tokenizedParams = new FunctionTokenizer(simpleTokensStore).tokenizeFunction(testObj.function);
+        List<List<RawToken>> tokenizedParams = new FunctionTokenizer(simpleTokensStore).tokenizeFunction(testObj.function);
 
         assertFalse(tokenizedParams.isEmpty());
         assertEquals(testObj.tokenizedParams.size(), tokenizedParams.size());
@@ -72,7 +73,7 @@ public class CalculatorServiceTests {
     @ParameterizedTest
     @MethodSource("provideMappedExpressionObjs")
     public void tokenTreeBuilderTest(MappedExpressionTestObj testObj) {
-        LinkedList<MappedToken> mappedTokens = new TokensTreeBuilder(simpleTokensStore)
+        List<MappedToken> mappedTokens = new TokensTreeBuilder(simpleTokensStore)
                 .build(new ExpressionTokenizer(simpleTokensStore).tokenizeExpression(
                 testObj.expression
         ));
@@ -90,13 +91,13 @@ public class CalculatorServiceTests {
     @ParameterizedTest
     @MethodSource("provideSimpleObjs")
     public void calculatorSimpleTest(ResultTestObj testObj) {
-        assertEquals(testObj.result, new Calculator(simpleTokensStore).calculate(testObj.expression));
+        assertEquals(testObj.result, Calculator.calculate(testObj.expression, new SimpleTokensStore()));
     }
 
     @ParameterizedTest
     @MethodSource("provideProgrammerObjs")
     public void calculatorProgrammerTest(ResultTestObj testObj) {
-        assertEquals(testObj.result, new Calculator(programmerTokensStore).calculate(testObj.expression));
+        assertEquals(testObj.result, Calculator.calculate(testObj.expression, new ProgrammerTokensStore()));
     }
 
     private static Stream<ResultTestObj> provideProgrammerObjs() {

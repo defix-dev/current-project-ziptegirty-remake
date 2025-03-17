@@ -13,12 +13,13 @@ import java.util.*;
 public class TokensTreeCalculator {
     private final TokensStore store;
 
-    public double calculateExpression(LinkedList<MappedToken> tokens) {
-        Stack<Double> values = new Stack<>();
-        Stack<String> operators = new Stack<>();
+    public double calculateExpression(List<MappedToken> tokens) {
+        Deque<Double> values = new ArrayDeque<>();
+        Deque<String> operators = new ArrayDeque<>();
+        Deque<MappedToken> mappedTokens = new ArrayDeque<>(tokens);
 
-        while (!tokens.isEmpty()) {
-            MappedToken token = tokens.poll();
+        while (!mappedTokens.isEmpty()) {
+            MappedToken token = mappedTokens.poll();
 
             if (token instanceof DefaultMappedToken operandToken) {
                 if (operandToken.identify() == TokenType.OPERAND) {

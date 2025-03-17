@@ -7,7 +7,7 @@ import Main from "@/Main.vue";
 import {authorizationStore} from "@/authorizationStore.js";
 
 const routes = [
-    { name: "Calculator", path: "/services/calculator", component: CalculatorService },
+    { name: "Calculator", path: "/services/calculator/:type?", component: CalculatorService },
     { name: "Weather", path: "/services/weather/:name?", component: WeatherService },
     { name: "Chat", path: "/services/chat/:id?", component: ChatService },
     { name: "Currency-Converter", path: "/services/currency_converter", component: CurrencyConverterService },

@@ -12,7 +12,7 @@ import java.util.List;
 @Getter
 public class MappedFunctionToken implements MappedToken {
     private String keyword;
-    private LinkedList<LinkedList<MappedToken>> tokenizedParams;
+    private List<List<MappedToken>> tokenizedParams;
 
     @Override
     public TokenType identify() {

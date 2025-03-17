@@ -15,15 +15,14 @@ import java.util.stream.Collectors;
 
 @AllArgsConstructor
 public class ExpressionTokenizer {
-    private static final Logger logger = LoggerFactory.getLogger(ExpressionTokenizer.class);
     private final TokensStore store;
 
-    public LinkedList<RawToken> tokenizeExpression(String expression) {
+    public List<RawToken> tokenizeExpression(String expression) {
         ExpressionValidator.validateRawExpression(expression);
         expression = prepareRawExpression(expression);
 
-        LinkedList<RawToken> tokens = new LinkedList<>();
-        Queue<Character> expQueue = new ArrayDeque<>(expression.chars().mapToObj(c -> (char) c).toList());
+        List<RawToken> tokens = new ArrayList<>();
+        Deque<Character> expQueue = new ArrayDeque<>(expression.chars().mapToObj(c -> (char) c).toList());
 
         StringBuilder tokenBuilder = new StringBuilder();
         TokenType expectedTokenType = TokenType.NONE;
@@ -52,7 +51,7 @@ public class ExpressionTokenizer {
             final boolean isOperatorExist = expectedTokenType == TokenType.OPERATOR && store.getOperators().containsKey(tokenBuilder.toString());
             if ((expectedTokenType != innerExpectedType && isException) || isOperatorExist) {
                 tokens.add(createRawToken(expectedTokenType, tokenBuilder.toString()));
-                tokenBuilder = new StringBuilder();
+                tokenBuilder.setLength(0);
             }
 
             expectedTokenType = innerExpectedType;
@@ -87,4 +86,3 @@ public class ExpressionTokenizer {
         return defaultType;
     }
 }
-

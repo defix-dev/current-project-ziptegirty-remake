@@ -4,28 +4,30 @@ import lombok.AllArgsConstructor;
 import org.defix.services.calculator.abstractions.TokensStore;
 import org.defix.services.calculator.objects.RawToken;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.stream.Collectors;
 
 @AllArgsConstructor
 public class FunctionTokenizer {
     private final TokensStore store;
 
-    public LinkedList<LinkedList<RawToken>> tokenizeFunction(String function) {
-        int start = function.indexOf('(') + 1;
-        int end = function.lastIndexOf(')');
+    public List<List<RawToken>> tokenizeFunction(String rawFunc) {
+        int start = rawFunc.indexOf('(') + 1;
+        int end = rawFunc.lastIndexOf(')');
         if (start <= 0 || end <= start) return new LinkedList<>();
 
-        String content = function.substring(start, end);
-        LinkedList<String> paramList = parseFunctionParams(content);
+        String content = rawFunc.substring(start, end);
+        List<String> paramList = parseFunctionParams(content);
 
         return paramList.stream()
                 .map(v -> new ExpressionTokenizer(store).tokenizeExpression(v))
                 .collect(Collectors.toCollection(LinkedList::new));
     }
 
-    private static LinkedList<String> parseFunctionParams(String content) {
-        LinkedList<String> paramList = new LinkedList<>();
+    private static List<String> parseFunctionParams(String content) {
+        List<String> paramList = new ArrayList<>();
         StringBuilder currentParam = new StringBuilder();
 
         int depth = 0;

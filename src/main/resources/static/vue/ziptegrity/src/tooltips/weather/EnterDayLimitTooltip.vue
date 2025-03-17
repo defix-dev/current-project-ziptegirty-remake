@@ -13,7 +13,7 @@ defineProps({
   <span class="tooltip__title">Дневной лимит</span>
   <input v-model="dayLimitValue" type="number" placeholder="Введите дневной лимит..."
          class="tooltip__input"/>
-  <a class="day-limit-tooltip__button" type="button" @click="() => {
+  <a class="tooltip__button" type="button" @click="() => {
     onChangeLimit(dayLimitValue);
     tooltipStore.hide();
   }">Установить лимит</a>

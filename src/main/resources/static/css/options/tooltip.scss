@@ -13,6 +13,39 @@
   top: px2rem(25px);
   z-index: 999;
 
+  &__button {
+    all: unset;
+    text-align: center;
+    padding: $main-offset/2;
+    color: white;
+    background-color: $main-color;
+    position: relative;
+    transition: transform .15s ease-in-out;
+
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      bottom: 0;
+      width: 0;
+      height: px2rem(1px);
+      background-color: white;
+      transition: width .15s ease-in-out
+    }
+
+    &:hover {
+      cursor: pointer;
+
+      &:before {
+        width: 100%;
+      }
+    }
+
+    &:focus {
+      transform: scale(95%);
+    }
+  }
+
   &__cursor {
     $cursor-size: 12.5px;
     $border-size: 5px;
@@ -34,6 +67,7 @@
       border-bottom: px2rem($cursor-size/2) solid $header-bg-color;
     }
   }
+
   &__body {
     padding: $main-offset/2;
     background-color: $header-bg-color;
@@ -52,16 +86,5 @@
     border: px2rem(1px) solid $default-button-border-color;
     padding: $main-offset/2;
     color: $default-button-border-color;
-  }
-
-  &__button {
-    aspect-ratio: 1/1;
-    background-color: $default-button-border-color;
-    padding: $main-offset/2;
-
-    img {
-      height: px2rem(20px);
-      width: px2rem(20px);
-    }
   }
 }

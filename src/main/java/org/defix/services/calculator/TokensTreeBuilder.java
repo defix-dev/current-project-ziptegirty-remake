@@ -8,14 +8,16 @@ import org.defix.services.calculator.objects.RawToken;
 import org.defix.services.calculator.objects.MappedExpressionToken;
 import org.defix.services.calculator.objects.MappedFunctionToken;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 @AllArgsConstructor
 public class TokensTreeBuilder {
     private final TokensStore store;
 
-    public LinkedList<MappedToken> build(LinkedList<RawToken> tokens) {
-        LinkedList<MappedToken> result = new LinkedList<>();
+    public List<MappedToken> build(List<RawToken> tokens) {
+        List<MappedToken> result = new ArrayList<>();
         for (RawToken token : tokens) {
             switch (token.getType()) {
                 case EXPRESSION -> result.add(new MappedExpressionToken(
@@ -27,8 +29,8 @@ public class TokensTreeBuilder {
                     int index = token.getValue().indexOf('(');
                     String keyword = (index > 0) ? token.getValue().substring(0, index) : token.getValue();
 
-                    LinkedList<LinkedList<MappedToken>> tokenizedParams = new LinkedList<>();
-                    for (LinkedList<RawToken> paramExp : new FunctionTokenizer(store).tokenizeFunction(token.getValue())) {
+                    List<List<MappedToken>> tokenizedParams = new ArrayList<>();
+                    for (List<RawToken> paramExp : new FunctionTokenizer(store).tokenizeFunction(token.getValue())) {
                         tokenizedParams.add(build(paramExp));
                     }
 

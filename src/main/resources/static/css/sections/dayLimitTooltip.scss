@@ -2,34 +2,5 @@
 @import "../options/variables";
 
 .day-limit-tooltip__button {
-  all: unset;
-  text-align: center;
-  padding: $main-offset/2;
-  color: white;
-  background-color: $main-color;
-  position: relative;
-  transition: transform .15s ease-in-out;
-
-  &:before {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 0;
-    height: px2rem(1px);
-    background-color: white;
-    transition: width .15s ease-in-out
-  }
-
-  &:hover {
-    cursor: pointer;
-
-    &:before {
-      width: 100%;
-    }
-  }
-
-  &:focus {
-    transform: scale(95%);
-  }
+ 
 }

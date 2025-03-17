@@ -1,0 +1,131 @@
+@import "../functions/math";
+@import "../options/variables";
+@import "../templates/content";
+
+$base-offset: $main-offset/2;
+
+.calculator-service {
+  overflow-y: auto;
+
+  a {
+    text-decoration: none;
+  }
+
+  &__content {
+    @include container;
+  }
+
+  &__mini-header {
+    @include miniHeader;
+  }
+
+  &__expression {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: $base-offset;
+
+    &__input {
+      all: unset;
+      border: px2rem(1px) solid $default-button-border-color;
+      padding: $base-offset;
+    }
+
+    &__button-container {
+      display: flex;
+      gap: $base-offset;
+      width: auto;
+    }
+
+    &__change-button {
+      background-color: $default-button-color;
+      color: $main-color;
+      padding: $base-offset;
+      border: px2rem(1px) solid $default-button-border-color;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    &__calculate-button {
+      background-color: $main-color;
+      color: white;
+      padding: $base-offset;
+      border: px2rem(1px) solid $main-color-dark;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+  }
+
+  &__token-container {
+    display: flex;
+    flex-direction: column;
+    gap: $base-offset;
+  }
+
+  &__token {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: $default-button-color;
+    border: px2rem(1px) solid $default-button-border-color;
+    padding: $base-offset;
+
+    &__details {
+      display: flex;
+      gap: $base-offset;
+    }
+
+    &__type-detail {
+      background-color: rgba($default-button-border-color, .25);
+      color: black;
+      padding: $base-offset;
+    }
+
+    &__value-detail {
+      background-color: rgba($default-button-border-color, .25);
+      color: black;
+      padding: $base-offset;
+      display: flex;
+      gap: $base-offset;
+
+      &:hover {
+        cursor: pointer;
+      }
+
+      img {
+        width: px2rem(20px);
+        height: px2rem(20px);
+        vertical-align: middle;
+        opacity: 50%;
+      }
+    }
+
+    &__info {
+      img {
+        width: px2rem(30px);
+        height: px2rem(30px);
+        vertical-align: middle;
+        opacity: 50%;
+      }
+    }
+  }
+
+  &__answer {
+    width: 100%;
+    background-color: rgba($main-color, .15);
+    color: $main-color;
+    padding: $base-offset;
+  }
+
+  &__error {
+    width: 100%;
+    background-color: rgba(red, .15);
+    color: red;
+    padding: $base-offset;
+  }
+}

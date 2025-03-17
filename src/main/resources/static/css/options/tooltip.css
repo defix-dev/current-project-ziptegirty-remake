@@ -10,6 +10,34 @@
   top: 1.5625rem;
   z-index: 999;
 }
+.tooltip__button {
+  all: unset;
+  text-align: center;
+  padding: 0.625rem;
+  color: white;
+  background-color: #2A9D8F;
+  position: relative;
+  transition: transform 0.15s ease-in-out;
+}
+.tooltip__button:before {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 0;
+  height: 0.0625rem;
+  background-color: white;
+  transition: width 0.15s ease-in-out;
+}
+.tooltip__button:hover {
+  cursor: pointer;
+}
+.tooltip__button:hover:before {
+  width: 100%;
+}
+.tooltip__button:focus {
+  transform: scale(95%);
+}
 .tooltip__cursor {
   left: calc(50% - 12.5px);
   transform: translateY(-7.5px);
@@ -44,15 +72,6 @@
   border: 0.0625rem solid #7b7b7b;
   padding: 0.625rem;
   color: #7b7b7b;
-}
-.tooltip__button {
-  aspect-ratio: 1/1;
-  background-color: #7b7b7b;
-  padding: 0.625rem;
-}
-.tooltip__button img {
-  height: 1.25rem;
-  width: 1.25rem;
 }
 
 /*# sourceMappingURL=tooltip.css.map */

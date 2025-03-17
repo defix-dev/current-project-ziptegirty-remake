@@ -1,4 +1,4 @@
-package org.defix.services.calculator;
+package org.defix.services.calculator.tokenStores;
 
 import org.defix.services.calculator.abstractions.Function;
 import org.defix.services.calculator.abstractions.TokensStore;
