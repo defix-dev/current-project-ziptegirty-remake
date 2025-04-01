@@ -4,7 +4,7 @@ import {encodeTextToBase64, encodeToBase64} from "@/cryptUtils.js";
 import {CryptoManager} from "@/services/chat/cryptoManager.js";
 
 export class StompManager {
-    initialize(endpoint="http://localhost:3030/ws") {
+    initialize(endpoint=`${window.location.protocol === "https:" ? "https:" : "http:"}//${window.location.host}/ws`) {
         this.client = Stomp.over(new SockJS(endpoint));
     }
 

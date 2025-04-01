@@ -20,7 +20,6 @@ const submit = () => {
 </script>
 
 <template>
-  <link rel="stylesheet" href="/css/sections/authPopup.css" />
   <div class="auth-popup">
     <div class="auth-popup__header">
       <span class="auth-popup__title">Регистрация</span>

@@ -122,8 +122,6 @@ onMounted(async () => {
 </script>
 
 <template>
-  <link rel="stylesheet" href="/css/sections/searchTooltip.css"/>
-  <link rel="stylesheet" href="/css/pages/chat.css"/>
   <div class="chat-service">
     <div class="chat-service__left side">
       <div class="chat-service__header">

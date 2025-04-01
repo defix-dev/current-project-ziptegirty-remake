@@ -7,7 +7,6 @@ import {authorizationStore} from "@/authorizationStore.js";
 </script>
 
 <template>
-  <link rel="stylesheet" href="/css/pages/main.css"/>
   <div class="main">
     <span class="main__title">Добро пожаловать!</span>
     <span class="main__tip" v-if="authorizationStore.isAuthorized">Для выбора сервиса, воспользуйтесь панелью выше</span>

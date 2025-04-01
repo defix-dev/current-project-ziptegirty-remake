@@ -37,7 +37,8 @@ public class SpringSecurityConfig {
 
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        return http.csrf(AbstractHttpConfigurer::disable)
+        return http
+                .csrf(AbstractHttpConfigurer::disable)
                 .authorizeHttpRequests(a ->
                         a.requestMatchers("/api/v1/messages/**",
                                         "/api/v1/chats/**",
@@ -46,7 +47,7 @@ public class SpringSecurityConfig {
                                         "/api/v1/weather/**",
                                         "/api/v1/authentication/logout").authenticated()
                                 .requestMatchers("/api/v1/authentication/login", "/api/v1/authentication/register",
-                                        "/api/v1/authentication/authorized", "/services/**", "/main").permitAll().anyRequest().permitAll())
+                                        "/api/v1/authentication/authorized", "/services/**", "/main", "/ws/**").permitAll().anyRequest().permitAll())
                 .addFilterBefore(new JwtAuthenticationFilter(userService), UsernamePasswordAuthenticationFilter.class)
                 .build();
     }

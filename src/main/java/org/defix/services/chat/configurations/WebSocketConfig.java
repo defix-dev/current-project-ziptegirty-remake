@@ -24,7 +24,8 @@ public class WebSocketConfig implements WebSocketMessageBrokerConfigurer {
 
     @Override
     public void registerStompEndpoints(StompEndpointRegistry registry) {
-        registry.addEndpoint("/ws").addInterceptors(new AuthSubscribeProvideInterceptor())
+        registry.addEndpoint("/ws")
+                .setAllowedOrigins("https://favorday.online", "https://www.favorday.online").addInterceptors(new AuthSubscribeProvideInterceptor())
                 .withSockJS();
     }
 

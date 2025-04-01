@@ -10,7 +10,6 @@ const onApplyCodeWord = () => {
 </script>
 
 <template>
-  <link rel="stylesheet" href="/css/sections/codeWordPopup.css"/>
   <div class="code-word-popup">
     <div class="code-word-popup__header">
       <span class="code-word-popup__title">Снятие шифрования</span>

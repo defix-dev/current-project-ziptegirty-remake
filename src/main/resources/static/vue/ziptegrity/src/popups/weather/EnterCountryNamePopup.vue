@@ -11,7 +11,6 @@ function onSubmitCountryName() {
 </script>
 
 <template>
-  <link rel="stylesheet" href="/css/sections/entryCountryNamePopup.css" />
   <div class="country-popup">
     <div class="country-popup__header">
       <span class="country-popup__title">Ввод города</span>

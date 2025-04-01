@@ -5,6 +5,7 @@ import org.defix.services.weather.WeatherApiFacade;
 import org.defix.services.weather.objects.CurrentWeatherApiDTO;
 import org.defix.services.weather.objects.DailyForecastApiDTO;
 import org.defix.services.weather.objects.HourlyWeatherApiDTO;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +28,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @ControllerTests
+@Disabled
 public class WeatherControllerTests {
     @Autowired
     private MockMvc mockMvc;

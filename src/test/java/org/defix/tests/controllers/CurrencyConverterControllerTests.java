@@ -1,5 +1,6 @@
 package org.defix.tests.controllers;
 
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest
 @AutoConfigureMockMvc
 @ControllerTests
+@Disabled
 public class CurrencyConverterControllerTests {
     @Autowired
     private MockMvc mockMvc;

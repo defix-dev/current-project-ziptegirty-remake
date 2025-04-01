@@ -201,8 +201,6 @@ onMounted(() => {
 </script>
 
 <template>
-  <link rel="stylesheet" href="/css/pages/weather.css"/>
-  <link rel="stylesheet" href="/css/sections/dayLimitTooltip.css"/>
   <div class="weather-service">
     <div class="weather-service__left side">
       <div class="weather-service__header">

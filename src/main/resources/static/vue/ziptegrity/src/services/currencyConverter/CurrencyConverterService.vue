@@ -72,7 +72,6 @@ onMounted(() => {
 </script>
 
 <template>
-  <link rel="stylesheet" href="/css/pages/currencyConverter.css" />
   <div class="currency-converter">
     <div class="currency-converter__left side">
       <div class="currency-converter__header">

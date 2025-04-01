@@ -14,7 +14,6 @@ const logout = () => {
 </script>
 
 <template>
-  <link rel="stylesheet" href="/css/sections/header.css" />
   <div class="header">
     <div class="header__left">
       <img :src="pathToLogo" class="header__logo" alt="LOGO"/>

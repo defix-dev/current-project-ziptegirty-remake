@@ -8,7 +8,6 @@ defineProps({
 </script>
 
 <template>
-  <link rel="stylesheet" href="/css/sections/errorPopup.css" />
   <div class="error-popup">
     <div class="error-popup__header">
       <span class="error-popup__title">Произошла ошибка</span>

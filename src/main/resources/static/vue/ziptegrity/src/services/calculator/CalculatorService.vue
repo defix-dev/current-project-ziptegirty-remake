@@ -49,7 +49,6 @@ onMounted(async () => {
 </script>
 
 <template>
-  <link rel="stylesheet" href="/css/pages/calculator.css"/>
   <div class="calculator-service">
     <div class="calculator-service__content">
       <div class="calculator-service__expression">
