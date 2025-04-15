@@ -6,13 +6,13 @@
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
         <version>3.4.2</version>
-        <relativePath/> <!-- lookup parent from repository -->
+        <relativePath/>
     </parent>
-    <groupId>org.ziptegrity</groupId>
-    <artifactId>current-project-ziptegrity-remake</artifactId>
+    <groupId>org.defix</groupId>
+    <artifactId>pet-project-multi-service-app</artifactId>
     <version>0.0.2-SNAPSHOT</version>
-    <name>current-project-ziptegrity-remake</name>
-    <description>current-project-ziptegrity-remake</description>
+    <name>pet-project-multi-service-app</name>
+    <description>pet-project-multi-service-app</description>
     <url/>
     <licenses>
         <license/>
@@ -30,7 +30,6 @@
         <java.version>21</java.version>
     </properties>
     <dependencies>
-        <!-- https://mvnrepository.com/artifact/junit/junit -->
         <dependency>
             <groupId>org.junit.jupiter</groupId>
             <artifactId>junit-jupiter-api</artifactId>
@@ -86,14 +85,14 @@
         <dependency>
             <groupId>org.hibernate.validator</groupId>
             <artifactId>hibernate-validator</artifactId>
-            <version>7.0.5.Final</version> <!-- или новее -->
+            <version>7.0.5.Final</version>
         </dependency>
         <dependency>
             <groupId>jakarta.validation</groupId>
             <artifactId>jakarta.validation-api</artifactId>
-            <version>3.0.2</version> <!-- или новее -->
+            <version>3.0.2</version>
         </dependency>
-        <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
@@ -156,7 +155,18 @@
                 <configuration>
                     <source>21</source>
                     <target>21</target>
-                    <compilerArgs>--enable-preview</compilerArgs>
+                    <compilerArgs>
+                        <arg>--enable-preview</arg>
+                    </compilerArgs>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <excludes>
+                    </excludes>
                 </configuration>
             </plugin>
 
@@ -169,11 +179,13 @@
             </plugin>
 
             <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.3.0</version>
                 <configuration>
-                    <excludes>
-                    </excludes>
+                    <additionalOptions>
+                        <additionalOption>--enable-preview</additionalOption>
+                    </additionalOptions>
                 </configuration>
             </plugin>
         </plugins>
